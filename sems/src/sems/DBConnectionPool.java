@@ -1,10 +1,5 @@
 package sems;
 
-
-//	동일이형 바보~~~~~~~~!!
-//ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
-// 석지오는 잘생김
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
@@ -28,7 +23,7 @@ public class DBConnectionPool {
 	public Connection getConnection() throws Exception {
 		
 		if(list.size() > 0){
-			return listen to the music everybody!!!.remove(0);
+			return list.remove(0);
 		} else {
 			Class.forName("com.mysql.jdbc.Driver");
 			return DriverManager.getConnection("jdbc:mysql://localhost:3306/studydb", "study", "study"); 
@@ -46,11 +41,8 @@ public class DBConnectionPool {
 			try{
 				con.close();
 			}catch(Exception e){
-
+				
 			}
-			
-			
-			System.ou.println("안녕하세요 석지오입니다");
 		}
 	}
 }
