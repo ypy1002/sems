@@ -4,6 +4,7 @@ package sems;
 //	동일이형 바보~~~~~~~~!!
 //ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ
 // 석지오는 잘생김
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class DBConnectionPool {
 			}catch(Exception e){
 				
 			}
+			System.out.println("안녕~덕");
 		}
 	}
 }
