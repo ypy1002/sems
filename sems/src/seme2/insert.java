@@ -1,4 +1,4 @@
-package sems;
+package seme2;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,30 +11,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-@WebServlet("/subject/detail.bit")
-public class detail extends HttpServlet {
+@WebServlet("/subject/insert.bit")
+public class insert extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		MysqlSubjectDao dao = new MysqlSubjectDao();
+		MysqlCourseDao dao = new MysqlCourseDao();
 
-		int no = Integer.parseInt(request.getParameter("no"));
+		String title = request.getParameter("title");
+		String description = request.getParameter("description");
+		CourseVo subjectVo = new CourseVo().setTitle(title).setDescription(description);
 
 		try {
-			SubjectVo vo = dao.detail(no);
-
+			dao.insert(subjectVo);
 			response.setContentType("text/html;charset=UTF-8");
 
 			PrintWriter out = response.getWriter();
 			out.println("<html><head><title>test01</title><style>td{border : 1px solid red; text-align : center;} .no{width : 40px;} .subject{width : 200px;}</style></head>");
-			out.println("<body><table>");
-			
-				out.println("<tr><td>번호</td><td>" + vo.getSno() + "</td></tr><tr><td>과목명</td><td>" 
-			+ vo.getTitle() + "</td></tr><tr><td>설명</td><td><textarea rows='5' cols='100'>" + vo.getDescription() + "</textarea></td></tr>");
-			
-			out.println("</table></body></html>");
+			out.println("<body>");
+			out.println("<h1>등록성공입니다.</h1>");
+			out.println("</body></html>");
 		} catch (Throwable e) {
-			e.printStackTrace();
+			response.setContentType("text/html;charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("<h1>등록실패입니다.</h1>");
 		}
 	}
 }

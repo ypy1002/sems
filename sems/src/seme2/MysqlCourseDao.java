@@ -1,4 +1,4 @@
-package sems;
+package seme2;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,11 +8,11 @@ import java.util.List;
 
 //	SubjectVo의 setter / getter 사용
 
-public class MysqlSubjectDao implements SubjectDao{
+public class MysqlCourseDao {
 
 	DBConnectionPool dbConnectionPool = new DBConnectionPool();
 
-	public void insert(SubjectVo subject) throws Throwable {
+	public void insert(CourseVo subject) throws Throwable {
 		PreparedStatement stmt = null;
 		Connection con = null;
 		dbConnectionPool = new DBConnectionPool();
@@ -35,7 +35,7 @@ public class MysqlSubjectDao implements SubjectDao{
 		}
 	}
 
-	public List<SubjectVo> list(int pageNo, int pageSize) throws Throwable {
+	public List<CourseVo> list(int pageNo, int pageSize) throws Throwable {
 
 		PreparedStatement stmt = null;
 		Connection con = null;
@@ -50,10 +50,10 @@ public class MysqlSubjectDao implements SubjectDao{
 			stmt.setInt(2, pageSize);
 			rs = stmt.executeQuery();
 
-			ArrayList<SubjectVo> list = new ArrayList<SubjectVo>();
+			ArrayList<CourseVo> list = new ArrayList<CourseVo>();
 
 			while (rs.next()) {
-				list.add(new SubjectVo().setSno(rs.getInt("SNO")).setTitle(
+				list.add(new CourseVo().setSno(rs.getInt("SNO")).setTitle(
 						rs.getString("TITLE")));
 			}
 			return list;
@@ -72,7 +72,7 @@ public class MysqlSubjectDao implements SubjectDao{
 		}
 	}
 
-	public SubjectVo detail(int no) throws Throwable {
+	public List<CourseVo> detail(int no) throws Throwable {
 
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -85,11 +85,12 @@ public class MysqlSubjectDao implements SubjectDao{
 					+ " where SNO=?");
 			stmt.setInt(1, no);
 			rs = stmt.executeQuery();
-			
+			ArrayList<CourseVo> list = new ArrayList<CourseVo>();
 			if (rs.next()) {
-				return new SubjectVo().setSno(rs.getInt("SNO"))
+				list.add(new CourseVo().setSno(rs.getInt("SNO"))
 						.setTitle(rs.getString("TITLE"))
-						.setDescription(rs.getString("DEST"));
+						.setDescription(rs.getString("DEST")));
+				return list;
 			} else {
 				throw new Exception("해당 과목을 찾을 수 없습니다.");
 			}
@@ -108,7 +109,7 @@ public class MysqlSubjectDao implements SubjectDao{
 		}
 	}
 
-	public void update(SubjectVo subject) throws Throwable {
+	public void update(CourseVo subject) throws Throwable {
 		PreparedStatement stmt = null;
 		Connection con = null;
 		try {
