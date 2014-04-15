@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-@WebServlet("/subject/update.bit")
+@WebServlet("/course/update.bit")
 public class update extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

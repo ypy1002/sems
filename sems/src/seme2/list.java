@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
-@WebServlet("/subject/list.bit")
+@WebServlet("/course/list.bit")
 public class list extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
