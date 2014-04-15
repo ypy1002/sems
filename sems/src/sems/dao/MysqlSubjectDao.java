@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import sems.util.DBConnectionPool;
 import sems.vo.SubjectVo;
-import util.DBConnectionPool;
 
 //	SubjectVo의 setter / getter 사용
 
