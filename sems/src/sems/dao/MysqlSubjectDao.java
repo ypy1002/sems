@@ -9,7 +9,7 @@ import java.util.List;
 import sems.util.DBConnectionPool;
 import sems.vo.SubjectVo;
 
-//	SubjectVo의 setter / getter 사용
+//	SubjectVo의 setter / getter 사용zzzzzz
 
 public class MysqlSubjectDao implements SubjectDao{
 
