@@ -20,7 +20,7 @@ public class MysqlCourseDao implements CourseDao {
 		this.dbConnectionPool = dbConnectionPool;
 	}
 	
-	public void insert(CourseVo subject) throws Throwable {
+	public void insert(CourseVo course) throws Throwable {
 		
 		PreparedStatement stmt = null;
 		Connection con = null;
@@ -30,9 +30,10 @@ public class MysqlCourseDao implements CourseDao {
 			con = dbConnectionPool.getConnection();
 			
 			stmt = con.prepareStatement(
-					"insert SE_SUBJS(TITLE, DEST) values(?, ?)");
-			stmt.setString(1, subject.getTitle());
-			stmt.setString(2, subject.getDescription());
+					"insert SE_COURS(TITLE, DEST, HOURS) values(?, ?, ?)");
+			stmt.setString(1, course.getTitle());
+			stmt.setString(2, course.getDescription());
+			stmt.setInt(3, course.getHours());
 			stmt.executeUpdate();
 		} catch (Throwable e) {
 			throw e;
@@ -53,8 +54,8 @@ public class MysqlCourseDao implements CourseDao {
 			con = dbConnectionPool.getConnection();
 			
 			stmt = con.prepareStatement(
-					"select SNO, TITLE from SE_SUBJS"
-							+ " order by SNO desc"
+					"select CNO, TITLE from SE_COURS"
+							+ " order by CNO desc"
 							+ " limit ?, ?");
 			stmt.setInt(1, (pageNo - 1) * pageSize);
 			stmt.setInt(2, pageSize);
@@ -85,13 +86,13 @@ public class MysqlCourseDao implements CourseDao {
 			con = dbConnectionPool.getConnection();
 			
 			stmt = con.prepareStatement(
-					"select SNO, TITLE, DEST from SE_SUBJS"
-							+ " where SNO=?");
+					"select CNO, TITLE, DEST, HOURS from SE_COURS"
+							+ " where CNO=?");
 			stmt.setInt(1, no);
 			rs = stmt.executeQuery();
 			
 			if (rs.next()) {
-				return new CourseVo().setCno(rs.getInt("CNO")).setTitle(rs.getString("TITLE")).setDescription(rs.getString("DEST"));
+				return new CourseVo().setCno(rs.getInt("CNO")).setTitle(rs.getString("TITLE")).setDescription(rs.getString("DEST")).setHours(rs.getInt("HOURS"));
 			} else {
 				throw new Exception("해당 과목을 찾을 수 없습니다.");
 			}
@@ -104,20 +105,21 @@ public class MysqlCourseDao implements CourseDao {
 		}
 	}
 	
-	public void update(CourseVo subject) throws Throwable {
+	public void update(CourseVo course) throws Throwable {
 		PreparedStatement stmt = null;
 		Connection con = null;
 		try {
 			con = dbConnectionPool.getConnection();
 			
 			stmt = con.prepareStatement(
-					"update SE_SUBJS set"
+					"update SE_COURS set"
 							+ " TITLE=?" 
-							+ ", DEST=?"
-							+ " where SNO=?");
-			stmt.setString(1, subject.getTitle());
-			stmt.setString(2, subject.getDescription());
-			stmt.setInt(3, subject.getCno());
+							+ ", DEST=? , HOURS=?"
+							+ " where CNO=?");
+			stmt.setString(1, course.getTitle());
+			stmt.setString(2, course.getDescription());
+			stmt.setInt(3, course.getHours());
+			stmt.setInt(4, course.getCno());
 			stmt.executeUpdate();
 		} catch (Throwable e) {
 			throw e;
@@ -134,7 +136,7 @@ public class MysqlCourseDao implements CourseDao {
 			con = dbConnectionPool.getConnection();
 			
 			stmt = con.prepareStatement(
-					"delete from SE_SUBJS where SNO=?"	);
+					"delete from SE_COURS where CNO=?"	);
 			stmt.setInt(1, no);
 			stmt.executeUpdate();
 		} catch (Throwable e) {

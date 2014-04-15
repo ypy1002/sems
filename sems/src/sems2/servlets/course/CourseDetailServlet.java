@@ -29,16 +29,17 @@ public class CourseDetailServlet extends HttpServlet {
 		try{
 			out.println("<h1>과목 상세정보</h1>");
 			
-			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("subjectDao");
+			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("courseDao");
 			
 			int no = Integer.parseInt(request.getParameter("no"));
 		
-			CourseVo subject = dao.detail(no);
+			CourseVo course = dao.detail(no);
 
 			out.println("<table border = '1'>");
-			out.println("<tr><th>번호</th><td>" + subject.getCno() +"</td></tr>");
-			out.println("<tr><th>과목명</th><td>" + subject.getTitle() +"</td></tr>");
-			out.println("<tr><th>내용</th><td><textarea rows='5' cols='60'>" + subject.getDescription() +"</textarea></td></tr>");
+			out.println("<tr><th>번호</th><td>" + course.getCno() +"</td></tr>");
+			out.println("<tr><th>과목명</th><td>" + course.getTitle() +"</td></tr>");
+			out.println("<tr><th>교육시간</th><td>" + course.getHours() +"</td></tr>");
+			out.println("<tr><th>내용</th><td><textarea rows='5' cols='60'>" + course.getDescription() +"</textarea></td></tr>");
 			out.println("</table>");
 		}catch(Throwable e){
 			out.println("오류 발생 했음!");

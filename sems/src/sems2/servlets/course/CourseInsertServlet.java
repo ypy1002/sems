@@ -34,13 +34,14 @@ public class CourseInsertServlet extends HttpServlet {
 		try{
 			out.println("<h1>과목 등록 결과</h1>");
 			
-			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("subjectDao");
+			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("courseDao");
 			
-			CourseVo subjectVo = new CourseVo();
-			subjectVo.setTitle(request.getParameter("title"));
-			subjectVo.setDescription(request.getParameter("description"));
+			CourseVo courseVo = new CourseVo();
+			courseVo.setTitle(request.getParameter("title"));
+			courseVo.setDescription(request.getParameter("description"));
+			courseVo.setHours(Integer.parseInt(request.getParameter("hours")));
 		
-			dao.insert(subjectVo);
+			dao.insert(courseVo);
 			out.println("등록 성공");
 
 		}catch(Throwable e){

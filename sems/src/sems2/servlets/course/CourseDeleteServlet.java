@@ -33,7 +33,7 @@ public class CourseDeleteServlet extends HttpServlet {
 		try{
 			out.println("<h1>과목 삭제 결과</h1>");
 			
-			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("subjectDao");
+			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("courseDao");
 			
 			dao.delete(Integer.parseInt(request.getParameter("no")));
 			

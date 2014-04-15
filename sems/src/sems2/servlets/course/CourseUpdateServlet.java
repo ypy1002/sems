@@ -34,14 +34,15 @@ public class CourseUpdateServlet extends HttpServlet {
 		try{
 			out.println("<h1>과목 변경 결과</h1>");
 			
-			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("subjectDao");
+			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("courseDao");
 			
-			CourseVo subjectVo = new CourseVo();
-			subjectVo.setCno(Integer.parseInt(request.getParameter("no")));
-			subjectVo.setTitle(request.getParameter("title"));
-			subjectVo.setDescription(request.getParameter("description"));
+			CourseVo courseVo = new CourseVo();
+			courseVo.setCno(Integer.parseInt(request.getParameter("no")));
+			courseVo.setTitle(request.getParameter("title"));
+			courseVo.setDescription(request.getParameter("description"));
+			courseVo.setHours(Integer.parseInt(request.getParameter("hours")));
 			
-			dao.update(subjectVo);
+			dao.update(courseVo);
 			out.println("변경 성공");
 
 		}catch(Throwable e){

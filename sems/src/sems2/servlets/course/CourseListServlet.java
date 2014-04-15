@@ -29,7 +29,7 @@ public class CourseListServlet extends HttpServlet {
 		try{
 			out.println("<h1>과목 목록</h1>");
 			
-			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("subjectDao");
+			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("courseDao");
 			
 			int pageNo = Integer.parseInt(request.getParameter("pageNo"));
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
@@ -38,8 +38,8 @@ public class CourseListServlet extends HttpServlet {
 
 			out.println("<table border = '1'><tr><th>과목명</th><th>번호</th></tr>");
 			
-			for(CourseVo subject : list){
-				out.println("<tr><td>" + subject.getCno() + "</td><td>" + subject.getTitle() +"</td><tr>");
+			for(CourseVo course : list){
+				out.println("<tr><td>" + course.getCno() + "</td><td>" + course.getTitle() +"</td><tr>");
 			}
 		}catch(Throwable e){
 			out.println("오류 발생!");

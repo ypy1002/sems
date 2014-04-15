@@ -8,8 +8,6 @@ public class CourseVo {
 	private String description;
 	private int hours;
 	
-	
-
 	public int getHours() {
 		return hours;
 	}
