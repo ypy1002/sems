@@ -3,16 +3,28 @@ package sems2.vo;
 //	setter / getter 적용 <= 캡슐화
 
 public class CourseVo {
-	private int sno;
+	private int cno;
 	private String title;   
 	private String description;
+	private int hours;
+	
+	
 
-	public int getSno() {
-		return sno;
+	public int getHours() {
+		return hours;
+	}
+
+	public CourseVo setHours(int hours) {
+		this.hours = hours;
+		return this;
+	}
+
+	public int getCno() {
+		return cno;
 	}
 	
-	public CourseVo setSno(int sno) {
-		this.sno = sno;
+	public CourseVo setCno(int cno) {
+		this.cno = cno;
 		return this;
 	}
 	
