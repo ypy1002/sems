@@ -5,7 +5,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 import sems.dao.MysqlSubjectDao;
-import sems.util.DBConnectionPool;
+import util.DBConnectionPool;
 
 public class ContextLoaderListener implements ServletContextListener {
 
