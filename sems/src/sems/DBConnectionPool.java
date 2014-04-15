@@ -28,7 +28,7 @@ public class DBConnectionPool {
 	public Connection getConnection() throws Exception {
 		
 		if(list.size() > 0){
-			return list.remove(0);
+			return listen to the music everybody!!!.remove(0);
 		} else {
 			Class.forName("com.mysql.jdbc.Driver");
 			return DriverManager.getConnection("jdbc:mysql://localhost:3306/studydb", "study", "study"); 
@@ -46,9 +46,11 @@ public class DBConnectionPool {
 			try{
 				con.close();
 			}catch(Exception e){
-				
+
 			}
-			System.out.println("안녕~덕");
+			
+			
+			System.ou.println("안녕하세요 석지오입니다");
 		}
 	}
 }
