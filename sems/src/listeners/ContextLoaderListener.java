@@ -1,4 +1,4 @@
-package sems.listeners;
+package listeners;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
