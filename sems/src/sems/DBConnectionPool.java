@@ -1,5 +1,9 @@
 package sems;
 
+
+//	동일이형 바보~~~~~~~~!!
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.ArrayList;
