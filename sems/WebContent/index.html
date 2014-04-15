@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<style>
+
+body{ width: 100%; height: 100%; font-size: 15px; background-color : black;}
+h1 { color : yellow; }
+#box { border : 2px solid yellow; height : 270px; background-color : black; border-radius : 40px; margin-top : 10%;}
+#subjs { width: 50%; text-align: center; float: left;}
+#cours { width: 50%; text-align: center; margin-left: 50%; }
+#subjs>a , #cours>a { text-decoration: none; color : white; }
+#subjs>a:hover {color : yellow; font-size: 200%;}
+#cours>a:hover {color : yellow; font-size: 200%;}
+#box { width: 45%; margin-left: 25%;}
+</style>
+</head>
+<body>
+<div id="box">
+<div id="subjs">
+<h1>과목 관리</h1>
+<a href="subject/list.bit?pageNo=1&pageSize=10">1. 과목 목록</a><br><br>
+<a href="subject/detail.bit?no=2409">2. 과목 조회</a><br><br>
+<a href="subject/insert.bit?title=등록됬어요&description=등록됬어요">3. 과목 등록</a><br><br>
+<a href="subject/update.bit?no=2409&title=변경됬어요&description=변경됬어요">4. 과목 변경</a><br><br>
+<a href="subject/delete.bit?no=2402">5. 과목 삭제</a><br><br>
+</div>
+
+<div id="cours">
+<h1>과정 관리</h1>
+<a href="course/list.bit?pageNo=1&pageSize=10">1. 과정 목록</a><br><br>
+<a href="course/detail.bit?no=32">2. 과정 조회</a><br><br>
+<a href="course/insert.bit?title=등록됬어요&description=등록됬어요&hours=100">3. 과정 등록</a><br><br>
+<a href="course/update.bit?no=32&title=변경됬어요&description=변경됬어요&hours=0">4. 과정 변경</a><br><br>
+<a href="course/delete.bit?no=35">5. 과정 삭제</a><br><br>
+</div>
+</div>
+</body>
+</html>

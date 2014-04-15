@@ -27,10 +27,11 @@ public class CourseListServlet extends HttpServlet {
 		out.println("<html><head><title>과목목록</title><style>body{background-color : gray;}"
 				+ " td { background-color : black; color : white; text-align : center; border-radius : 5px;}"
 				+ " h1 { text-align : center; } div { width : 400px; margin-left : 39%;} th{ border-radius : 5px; background-color : violet; } "
-				+ "#no { width : 50px; } #su { width : 300px; } td:hover { background-color : white; color : black; } </style></head><body>");
+				+ "#no { width : 50px; } #su { width : 300px; } td:hover { background-color : white; color : black; }"
+				+ "#abox { text-align : center; } #a { text-align : center; text-decoration: none; color : yellow;}</style></head><body>");
 		
 		try{
-			out.println("<h1>과목 목록</h1>");
+			out.println("<h1>과정 목록</h1>");
 			
 			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("courseDao");
 			
@@ -48,7 +49,7 @@ public class CourseListServlet extends HttpServlet {
 			out.println("오류 발생!");
 		}
 		
-		out.println("</table></div></body></html>");
+		out.println("</table></div><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>목록으로</a><br><br></div></body></html>");
 	}
 
 }

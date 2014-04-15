@@ -29,10 +29,12 @@ public class CourseInsertServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목등록</title></head><body>");
+		out.println("<html><head><title>과목등록</title><style>body{background-color : gray;}"
+				+ " h1 { text-align : center; } #abox { text-align : center; } "
+				+ "#a { text-align : center; text-decoration: none; color : yellow;} </style></head><body>");
 		
 		try{
-			out.println("<h1>과목 등록 결과</h1>");
+			out.println("<h1>과정 등록 결과</h1>");
 			
 			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("courseDao");
 			
@@ -42,12 +44,12 @@ public class CourseInsertServlet extends HttpServlet {
 			courseVo.setHours(Integer.parseInt(request.getParameter("hours")));
 		
 			dao.insert(courseVo);
-			out.println("등록 성공");
+			out.println("<h1>등록 성공</h1>");
 
 		}catch(Throwable e){
-			out.println("오류 발생!");
+			out.println("<h1>오류 발생! 이미 등록된 데이터</h1>");
 		}
-		out.println("</body></html>");
+		out.println("</body><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>목록으로</a><br><br></div></html>");
 	}
 
 }
