@@ -3,16 +3,26 @@ package sems.vo;
 //	setter / getter 적용 <= 캡슐화
 
 public class SubjectVo {
-	private int sno;
+	private int no;		
 	private String title;   
 	private String description;
+	private int hours;
+	
+	public int getHours() {
+		return hours;
+	}
 
-	public int getSno() {
-		return sno;
+	public SubjectVo setHours(int hours) {
+		this.hours = hours;
+		return this;
+	}
+
+	public int getNo() {
+		return no;
 	}
 	
-	public SubjectVo setSno(int sno) {
-		this.sno = sno;
+	public SubjectVo setNo(int no) {
+		this.no = no;
 		return this;
 	}
 	

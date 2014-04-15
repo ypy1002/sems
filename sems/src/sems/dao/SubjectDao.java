@@ -11,12 +11,3 @@ public interface SubjectDao {
 	void update(SubjectVo subject) throws Throwable;
 	void delete(int no) throws Throwable;
 }
-
-
-
-
-
-
-
-
-
