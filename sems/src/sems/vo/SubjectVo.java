@@ -6,17 +6,7 @@ public class SubjectVo {
 	private int no;		
 	private String title;   
 	private String description;
-	private int hours;
 	
-	public int getHours() {
-		return hours;
-	}
-
-	public SubjectVo setHours(int hours) {
-		this.hours = hours;
-		return this;
-	}
-
 	public int getNo() {
 		return no;
 	}
