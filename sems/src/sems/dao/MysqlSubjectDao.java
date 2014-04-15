@@ -1,10 +1,13 @@
-package sems;
+package sems.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import sems.util.DBConnectionPool;
+import sems.vo.SubjectVo;
 
 //	SubjectVo의 setter / getter 사용
 

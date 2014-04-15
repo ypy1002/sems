@@ -1,4 +1,4 @@
-package sems;
+package sems.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,6 +1,8 @@
-package sems;
+package sems.dao;
 
 import java.util.List;
+
+import sems.vo.SubjectVo;
 
 public interface SubjectDao {
 	void insert(SubjectVo subject) throws Throwable;

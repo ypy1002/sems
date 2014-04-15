@@ -1,4 +1,4 @@
-package sems;
+package sems.servlets.subject;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,6 +9,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import sems.dao.MysqlSubjectDao;
+import sems.vo.SubjectVo;
 
 @SuppressWarnings("serial")
 @WebServlet("/subject/list.bit")
