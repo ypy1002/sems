@@ -11,7 +11,7 @@ import sems.vo.SubjectVo;
 
 //	SubjectVo의 setter / getter 사용zzzzzz11
 
-public class MysqlSubjectDao implements SubjectDao{
+public class MysqlCourseDao implements CourseDao{
 
 	DBConnectionPool dbConnectionPool = new DBConnectionPool();
 

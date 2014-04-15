@@ -4,7 +4,7 @@ import java.util.List;
 
 import sems.vo.SubjectVo;
 
-public interface SubjectDao {
+public interface CourseDao {
 	void insert(SubjectVo subject) throws Throwable;
 	List<SubjectVo> list(int pageNo, int pageSize) throws Throwable;
 	SubjectVo detail(int no) throws Throwable;

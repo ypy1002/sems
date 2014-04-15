@@ -2,7 +2,7 @@ package sems2.vo;
 
 //	setter / getter 적용 <= 캡슐화
 
-public class SubjectVo {
+public class CourseVo {
 	private int sno;
 	private String title;   
 	private String description;
@@ -11,7 +11,7 @@ public class SubjectVo {
 		return sno;
 	}
 	
-	public SubjectVo setSno(int sno) {
+	public CourseVo setSno(int sno) {
 		this.sno = sno;
 		return this;
 	}
@@ -20,7 +20,7 @@ public class SubjectVo {
 		return title;
 	}
 	
-	public SubjectVo setTitle(String title) {
+	public CourseVo setTitle(String title) {
 		this.title = title;
 		return this;
 	}
@@ -29,7 +29,7 @@ public class SubjectVo {
 		return description;
 	}
 	
-	public SubjectVo setDescription(String description) {
+	public CourseVo setDescription(String description) {
 		this.description = description;
 		return this;
 	}
