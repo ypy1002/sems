@@ -44,7 +44,8 @@ public class CourseDeleteServlet extends HttpServlet {
 		}catch(Throwable e){
 			out.println("<h1>오류 발생! 없는 데이터 번호</h1>");
 		}
-		out.println("</body><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>목록으로</a><br><br></div></html>");
+		out.println("</body><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>메뉴로</a><br><br>"
+				+ "<a id = 'a' href='list.bit?pageNo=1&pageSize=10'>리스트로</a></div></html>");
 	}
 
 }

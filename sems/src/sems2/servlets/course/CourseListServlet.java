@@ -41,16 +41,17 @@ public class CourseListServlet extends HttpServlet {
 		
 			List<CourseVo> list = dao.list(pageNo, pageSize);
 
-			out.println("<div><table><tr><th id='no'>번호</th><th id='su'>과정명</th></tr>");
+			out.println("<div><table><tr><th id='no'>번호</th><th id='su'>과정명</th><th>삭제</th></tr>");
 			
 			for(CourseVo course : list){
-				out.println("<tr><td>" + course.getCno() + "</td><td class='td1'><a id='al' href='detail.bit?no=" + course.getCno() + "'>" + course.getTitle() +"</a></td><tr>");
+				out.println("<tr><td>" + course.getCno() + "</td><td class='td1'><a id='al' href='detail.bit?no=" + course.getCno() + "'>" + course.getTitle() +"</a></td>"
+						+ "<td class='td1'><a id='al' href='delete.bit?no=" + course.getCno() + "'>삭제</a></td>");
 			}
 		}catch(Throwable e){
 			out.println("오류 발생!");
 		}
 		
-		out.println("</table></div><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>목록으로</a><br><br></div></body></html>");
+		out.println("</table></div><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>메뉴로</a><br><br></div></body></html>");
 	}
 
 }
