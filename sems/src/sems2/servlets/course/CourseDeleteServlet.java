@@ -46,12 +46,13 @@ public class CourseDeleteServlet extends HttpServlet {
 			dao.delete(Integer.parseInt(request.getParameter("no")));
 			
 			out.println("<h1>삭제 성공</h1>");
+			
+			response.sendRedirect("list.bit?pageNo=1&pageSize=10");
 
 		}catch(Throwable e){
 			out.println("<h1>오류 발생! 없는 데이터 번호</h1>");
 		}
-		out.println("</body><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>메뉴로</a><br><br>"
-				+ "<a id = 'a' href='list.bit?pageNo=1&pageSize=10'>리스트로</a></div></html>");
+		out.println("</body><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>메뉴로</a><br></div></html>");
 	}
 
 }
