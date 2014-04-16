@@ -31,32 +31,61 @@ public class UsersUpdateServlet extends HttpServlet {
 					.getAttribute("usersDao");
 			UsersVo vo = dao.detail(no);
 			
-			out.println("<!DOCTYPE html>");
-			out.println("<html>");
-			out.println("<head>");
-			out.println("<meta charset='UTF-8'>");
-			out.println("<title>과목 변경폼</title>");
-			out.println("</head>");
-			out.println("<body>");
-			out.println("<h1>과목 변경</h1>");
-			out.println("<form action='update.bit' method='post'>");
-			out.println("번호: <input type='text' name='no' value='"
-					+ vo.getUno()
-					+ "' readonly><br>");
-			out.println("과목명: <input type='text' name='title' value='"
-					+ vo.getEmail()
-					+ "'><br>");
-			out.println("설명: <textarea name='description' rows='10' cols='80'>"
-					+ vo.getPassword()
-					+ "</textarea><br>");
-			out.println("<input type='submit' value='변경'>");
-			out.println("<input type='button' value='취소'");
-			out.println("				onclick=\"location.href='detail.bit?no="
-					+ vo.getUno()
-					+ "'\">");
-			out.println("</form>");
-			out.println("</body>");
-			out.println("</html>");
+			out.println("<!DOCTYPE html><html><head><meta charset='UTF-8'><title>과목입력폼</title>");
+			out.println("<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>");
+			out.println("<style>");
+
+			out.println("body { width: 100%; height: 100%;}");
+			out.println("input{ border-radius : 5px;}");
+			out.println("div { border : 1px red solid; width: 15%;}");
+
+			out.println("</style>");
+			out.println("</head><body><div><h1>과목 입력</h1>");
+			out.println("<form action='/sems/users/update.bit' method='post' onsubmit='return re();'>");
+			out.println("<input type='text' name='uno' value='" + vo.getUno() +"' readonly><br>");
+			out.println("<input type='text' id='email' name='email' placeholder='Email' value='" + vo.getEmail() +"'><br>");
+			out.println("<input type='password' id='password' name='password' placeholder='password' value='" + vo.getPassword() +"'><br>");
+			out.println("<input type='text' id='name' name='name' placeholder='name' value='" + vo.getName() +"'><br>");
+			out.println("<input type='text' id='tel' name='tel' placeholder='tel' value='" + vo.getTel() +"'><br>");
+			out.println("<input type='text' name='fax' placeholder='fax' value='" + vo.getFax() +"'><br>");
+			out.println("<input type='text' name='postNo' placeholder='postNo' value='" + vo.getPostNo() +"'><br>");
+			out.println("<input type='text' name='addr' placeholder='addr' value='" + vo.getAddr() +"'><br>");
+			out.println("<input type='text' name='photoPath' placeholder='photoPath' value='" + vo.getPhoto() +"'><br><br>");
+			out.println("<input type='submit' value='변경' onclick=check();>");
+			out.println("<input type='reset' value='취소'>");
+			out.println("</form></div>");
+			
+			out.println("<script>");
+
+			out.println("var i = 0;");
+			
+			out.println("	function check(){");
+			out.println("  	if($('#email').val() == ''){");
+			out.println("    	alert('email은 필수 입력 항목입니다.');");
+			out.println("   	i++;");
+			out.println("  	}else if($('#password').val() == ''){");
+			out.println("    	alert('password는 필수 입력 항목입니다.');");
+			out.println("   	i++;");
+			out.println("  	}else if($('#name').val() == ''){");
+			out.println("    	alert('name은 필수 입력 항목입니다.');");
+			out.println("   	i++;");
+			out.println("   }else if($('#tel').val() == ''){");
+			out.println("   	alert('tel은 필수 입력 항목입니다.');");
+			out.println("   	i++;");
+			out.println("  	}");
+			out.println(" }");
+
+			out.println("	function re(){");
+			out.println("		if(i == 0){");
+			out.println("			return true;");
+			out.println("		}else{");
+			out.println("			i = 0;");
+			out.println("			return false;");
+			out.println("		}");
+			out.println("	}");
+
+			out.println("</script>");
+			out.println("</body></html>");
 			
 		} catch (Throwable e) {
 			out.println("오류 발생 했음!");
@@ -83,9 +112,14 @@ public class UsersUpdateServlet extends HttpServlet {
 					.getAttribute("usersDao");
 			
 			UsersVo vo = new UsersVo();
-			vo.setUno(Integer.parseInt(request.getParameter("no")));
-			vo.setEmail(request.getParameter("title"));
-			vo.setPassword(request.getParameter("description"));
+			vo.setUno(Integer.parseInt(request.getParameter("uno")));
+			vo.setEmail(request.getParameter("email"));
+			vo.setName(request.getParameter("name"));
+			vo.setTel(request.getParameter("tel"));
+			vo.setFax(request.getParameter("fax"));
+			vo.setPostNo(request.getParameter("postNo"));
+			vo.setAddr(request.getParameter("addr"));
+			vo.setPhoto(request.getParameter("photoPath"));
 			
 			dao.update(vo);
 			

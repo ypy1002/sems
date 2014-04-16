@@ -79,6 +79,11 @@ public class UsersDetailServlet extends HttpServlet {
 			out.println("<td>"+ users.getAddr() + "</td>");
 			out.println("</tr>");
 			
+			out.println("<tr>");
+			out.println("<th>Photo_Path</th>");
+			out.println("<td>"+ users.getPhoto() + "</td>");
+			out.println("</tr>");
+			
 			out.println("</table>");
 			out.println("<a href='list.bit?pageNo=1&pageSize=10'>목록</a> ");
 			out.println("<a href='delete.bit?no="

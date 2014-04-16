@@ -115,13 +115,16 @@ public class MysqlUsersDao implements UsersDao {
 			con = dbConnectionPool.getConnection();
 			
 			stmt = con.prepareStatement(
-					"update SE_SUBJS set"
-							+ " TITLE=?" 
-							+ ", DEST=?"
-							+ " where SNO=?");
-/*			stmt.setString(1, users.getTitle());
-			stmt.setString(2, users.getDescription());
-			stmt.setInt(3, users.getNo());*/
+					"update SE_USERS set EMAIL=?, PWD=?, NAME=?, TEL=?, FAX=?, POSTNO=?, ADDR=?, PHOT_PATH=? where UNO=?");
+			stmt.setString(1, users.getEmail());
+			stmt.setString(2, users.getPassword());
+			stmt.setString(3, users.getName());
+			stmt.setString(4, users.getTel());
+			stmt.setString(5, users.getFax());
+			stmt.setString(6, users.getPostNo());
+			stmt.setString(7, users.getAddr());
+			stmt.setString(8, users.getPhoto());
+			stmt.setInt(9, users.getUno());
 			stmt.executeUpdate();
 		} catch (Throwable e) {
 			throw e;
