@@ -26,7 +26,6 @@ public class CourseUpdateServlet extends HttpServlet {
 		//		-	getParameter()를 호출하기 전에 실행해야 한다.
 		//		단, 한번이라도 getParameter()를 호출했다면 적용안됨
 		
-		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><title>과목변경</title>"
