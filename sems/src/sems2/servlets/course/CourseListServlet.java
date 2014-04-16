@@ -50,7 +50,7 @@ public class CourseListServlet extends HttpServlet {
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		
 			List<CourseVo> list = dao.list(pageNo, pageSize);
-			out.println("<a href='courseForm.html'>새과정</a><br>");
+			out.println("<a href='insertForm/courseForm.html'>새과정</a><br>");
 			out.println("<table border='1'>");
 			out.println("<tr>");
 			out.println("	<th>번호</th>");
