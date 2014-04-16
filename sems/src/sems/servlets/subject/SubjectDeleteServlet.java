@@ -16,15 +16,11 @@ import sems.dao.SubjectDao;
 public class SubjectDeleteServlet extends HttpServlet {
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(
+			HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		//	POST요청의 값에 대해 적용. GET요청의 값은 ?
-		//		-	서블릿 컨테이너의 안내에 따라 설정한다.
-		//		-	getParameter()를 호출하기 전에 실행해야 한다.
-		//		단, 한번이라도 getParameter()를 호출했다면 적용안됨
 		
-		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><title>과목삭제</title>"
@@ -40,12 +36,17 @@ public class SubjectDeleteServlet extends HttpServlet {
 		try{
 			out.println("<h1>과목 삭제 결과</h1>");
 			
-			SubjectDao dao = (SubjectDao) this.getServletContext().getAttribute("subjectDao");
+			SubjectDao dao = (SubjectDao) this.getServletContext()
+					.getAttribute("subjectDao");
 			
-			dao.delete(Integer.parseInt(request.getParameter("no")));
+			int no = Integer.parseInt(request.getParameter("no"));
+			
+      dao.delete(no); 
 			
 			out.println("<h1>삭제 성공</h1>");
 
+			response.sendRedirect("list.bit?pageNo=1&pageSize=10");
+			
 		}catch(Throwable e){
 			out.println("<h1>오류 발생! 없는 데이터 번호</h1>");
 		}

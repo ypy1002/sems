@@ -15,17 +15,58 @@ import sems.vo.SubjectVo;
 @WebServlet("/subject/update.bit")
 @SuppressWarnings("serial")
 public class SubjectUpdateServlet extends HttpServlet {
+	@Override
+	protected void doGet(
+			HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<html><head><title>과목변경</title></head><body>");
+		
+		try {
+			//1) DB에서 과목 상세 정보를 가져온다.
+			int no = Integer.parseInt(request.getParameter("no"));
+			SubjectDao dao = (SubjectDao)this.getServletContext()
+					.getAttribute("subjectDao");
+			SubjectVo vo = dao.detail(no);
+			
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<meta charset='UTF-8'>");
+			out.println("<title>과목 변경폼</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<h1>과목 변경</h1>");
+			out.println("<form action='update.bit' method='post'>");
+			out.println("번호: <input type='text' name='no' value='"
+					+ vo.getNo()
+					+ "' readonly><br>");
+			out.println("과목명: <input type='text' name='title' value='"
+					+ vo.getTitle()
+					+ "'><br>");
+			out.println("설명: <textarea name='description' rows='10' cols='80'>"
+					+ vo.getDescription()
+					+ "</textarea><br>");
+			out.println("<input type='submit' value='변경'>");
+			out.println("<input type='button' value='취소'");
+			out.println("				onclick=\"location.href='detail.bit?no="
+					+ vo.getNo()
+					+ "'\">");
+			out.println("</form>");
+			out.println("</body>");
+			out.println("</html>");
+			
+		} catch (Throwable e) {
+			out.println("오류 발생 했음!");
+			e.printStackTrace();
+		}
+		out.println("</body></html>");
+	}
 	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
-		//	POST요청의 값에 대해 적용. GET요청의 값은 ?
-		//		-	서블릿 컨테이너의 안내에 따라 설정한다.
-		//		-	getParameter()를 호출하기 전에 실행해야 한다.
-		//		단, 한번이라도 getParameter()를 호출했다면 적용안됨
-		
-		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><title>과목변경</title>"
@@ -39,17 +80,19 @@ public class SubjectUpdateServlet extends HttpServlet {
 				+ "</style></head><body>");
 		
 		try{
-			out.println("<h1>과목 변경 결과</h1>");
+out.println("<h1>과목 변경 결과</h1>");
 			
-			SubjectDao dao = (SubjectDao) this.getServletContext().getAttribute("subjectDao");
+			SubjectDao dao = (SubjectDao)this.getServletContext()
+					.getAttribute("subjectDao");
 			
-			SubjectVo subjectVo = new SubjectVo();
-			subjectVo.setNo(Integer.parseInt(request.getParameter("no")));
-			subjectVo.setTitle(request.getParameter("title"));
-			subjectVo.setDescription(request.getParameter("description"));
+			SubjectVo vo = new SubjectVo();
+			vo.setNo(Integer.parseInt(request.getParameter("no")));
+			vo.setTitle(request.getParameter("title"));
+			vo.setDescription(request.getParameter("description"));
 			
-			dao.update(subjectVo);
-			out.println("<h1>변경 성공</h1>");
+			dao.update(vo);
+			
+			out.println("변경 성공!");
 
 		}catch(Throwable e){
 			out.println("<h1>오류 발생! 이미 등록된 데이터 또는, 없는 데이터 번호</h1>");
