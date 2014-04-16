@@ -28,9 +28,15 @@ public class SubjectUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목변경</title><style>body{background-color : gray;}"
-				+ " h1 { text-align : center; } #abox { text-align : center; } "
-				+ "#a { text-align : center; text-decoration: none; color : yellow;} </style></head><body>");
+		out.println("<html><head><title>과목변경</title>"
+				+ "<style>"
+				
+				+ "body { background-color : gray;}"
+				+ "h1 { text-align : center;} "
+				+ "#abox { text-align : center;} "
+				+ "#a { text-align : center; text-decoration: none; color : yellow;}"
+				
+				+ "</style></head><body>");
 		
 		try{
 			out.println("<h1>과목 변경 결과</h1>");

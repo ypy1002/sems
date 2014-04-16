@@ -28,9 +28,15 @@ public class CourseDeleteServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목삭제</title><style>body{background-color : gray;}"
-				+ " h1 { text-align : center; } #abox { text-align : center; } "
-				+ "#a { text-align : center; text-decoration: none; color : yellow;} </style></head><body>");
+		out.println("<html><head><title>과목삭제</title>"
+				+ "<style>"
+				
+				+ "body { background-color : gray;}"
+				+ "h1 { text-align : center;}"
+				+ "#abox { text-align : center;} "
+				+ "#a { text-align : center; text-decoration: none; color : yellow;}"
+				
+				+ "</style></head><body>");
 		
 		try{
 			out.println("<h1>과목 삭제 결과</h1>");

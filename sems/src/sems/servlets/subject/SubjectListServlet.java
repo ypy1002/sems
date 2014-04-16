@@ -23,11 +23,19 @@ public class SubjectListServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목목록</title><style>body{background-color : gray;}"
-				+ " td { background-color : black; color : white; text-align : center; border-radius : 5px;}"
-				+ " h1 { text-align : center; } div { width : 400px; margin-left : 39%;} th{ border-radius : 5px; background-color : violet; } "
-				+ "#no { width : 50px; } #su { width : 300px; } .td1:hover { background-color : white; color : black; }"
-				+ "#abox { text-align : center; } #a { text-align : center; text-decoration: none; color : yellow;}"
+		out.println("<html><head><title>과목목록</title>"
+				+ "<style>"
+				
+				+ "body {background-color : gray;}"
+				+ "td { background-color : black; color : white; text-align : center; border-radius : 5px;}"
+				+ "h1 { text-align : center; }"
+				+ "div { width : 400px; margin-left : 39%;}"
+				+ "th{ border-radius : 5px; background-color : violet;}"
+				+ "#no { width : 50px; }"
+				+ "#su { width : 300px; }"
+				+ ".td1:hover { background-color : white; color : black; }"
+				+ "#abox { text-align : center; }"
+				+ "#a { text-align : center; text-decoration: none; color : yellow;}"
 				+ "#al { text-decoration: none; color : violet; }</style></head><body>");
 		
 		try{
