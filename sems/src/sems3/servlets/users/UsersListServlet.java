@@ -28,9 +28,19 @@ public class UsersListServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목목록</title></head><body>");
+		out.println("<html><head><title>사용자 목록</title>"
+				+ "<style>"
+				
+				+ "body { width : 100%; height : 100%; background-color : black;}"
+				+ "a { text-decoration : none; color : yellow;}"
+				+ ".dd:hover { background-color : gray; }"
+				+ "div { width : 50%; margin-left : 24%; text-align : center;}"
+				+ "th { border-radius : 20px; text-align : center; background-color : gray; width : 100px;}"
+				+ "td { border-radius : 20px; text-align : center; background-color : brown; height : 30px; font-weight: bold;}"
+				+ "h1 { text-align : center; color : gray; }"
+				+ "</style>"
+				+ "</head><body>");
 		try {
-			out.println("<h1>과목 목록</h1>");
 			
 			UsersDao dao = (UsersDao)this.getServletContext()
 																							.getAttribute("usersDao");
@@ -40,8 +50,8 @@ public class UsersListServlet extends HttpServlet {
 			
 			List<UsersVo> list = dao.list(pageNo, pageSize);
 			
-			//out.println("<a href='/sems/insertForm/form.html'>새과목</a><br>");
-			out.println("<table border='1'>");
+			out.println("<div><table>");
+			out.println("<h1>사용자 목록</h1>");
 			out.println("<tr>");
 			out.println("	<th>No</th><th>Email</th><th>Password</th><th>Name</th><th>Tel</th><th>Detail</th><th>Delete</th>");
 			out.println("</tr>");
@@ -53,18 +63,19 @@ public class UsersListServlet extends HttpServlet {
 				out.println("<td>" + users.getPassword() + "</td>");
 				out.println("<td>" + users.getName() + "</td>");
 				out.println("<td>" + users.getTel() + "</td>");
-				out.println("<td><a href='detail.bit?no=" + users.getUno() + "'>View</a></td>");
-				out.println("<td><a href='delete.bit?no=" + users.getUno() + "'>Delete</a></td>");
+				out.println("<td class='dd'><a href='detail.bit?no=" + users.getUno() + "'>View</a></td>");
+				out.println("<td class='dd'><a href='delete.bit?no=" + users.getUno() + "'>Delete</a></td>");
 				out.println("</tr>");
 			}
-			out.println("</table>");
+			out.println("</table><br><br>");
+			out.println("<a href='/sems/index.html'>Menu</a><br><br><a href='/sems/updateForm/form.html'>Update</a></div>");
 		} catch (Throwable e) {
 			out.println("오류 발생 했음!");
 			e.printStackTrace();
 		}
 		out.println("</body></html>");
 	}
-}
+}	
 
 
 

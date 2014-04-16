@@ -35,7 +35,7 @@ public class UsersDeleteServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목삭제</title>");
+		out.println("<html><head><title>사용자 데이터 삭제</title>");
 		
 		// 2) 응답 내용에 Refresh 명령어 심기
 		//out.println("<meta http-equiv='Refresh'"
@@ -43,7 +43,7 @@ public class UsersDeleteServlet extends HttpServlet {
 		out.println("</head><body>");
 		
 		try {
-			out.println("<h1>과목 삭제 결과</h1>");
+			out.println("<h1>사용자 데이터 삭제 결과</h1>");
 			
 			UsersDao dao = (UsersDao)this.getServletContext()
 					.getAttribute("usersDao");
@@ -51,8 +51,6 @@ public class UsersDeleteServlet extends HttpServlet {
 			int no = Integer.parseInt(request.getParameter("no"));
 			
 			dao.delete(no);
-			
-			out.println("삭제 성공!");
 			
 			// 3) Redirect 처리
 			// - 콘텐츠를 출력하지 않기 때문에 => 이전에 출력한 내용은 취소된다.

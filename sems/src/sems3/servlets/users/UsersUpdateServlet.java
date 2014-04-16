@@ -22,7 +22,7 @@ public class UsersUpdateServlet extends HttpServlet {
 	    throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목변경</title></head><body>");
+				
 		
 		try {
 			//1) DB에서 과목 상세 정보를 가져온다.
@@ -31,16 +31,20 @@ public class UsersUpdateServlet extends HttpServlet {
 					.getAttribute("usersDao");
 			UsersVo vo = dao.detail(no);
 			
-			out.println("<!DOCTYPE html><html><head><meta charset='UTF-8'><title>과목입력폼</title>");
-			out.println("<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>");
-			out.println("<style>");
+			out.println("<!DOCTYPE html><html><head><meta charset='UTF-8'><title>사용자 데이터 입력 폼</title>");
+			out.println("<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>"
 
-			out.println("body { width: 100%; height: 100%;}");
-			out.println("input{ border-radius : 5px;}");
-			out.println("div { border : 1px red solid; width: 15%;}");
-
-			out.println("</style>");
-			out.println("</head><body><div><h1>과목 입력</h1>");
+			+ "<style>"
+			
+			  + "body { width : 100%; height : 100%; background-color : black;}"
+			  + "input { border-radius : 5px;}"
+			  + "a { text-decoration : none; color : yellow;}"
+			  + "div { width : 50%; margin-left : 24%; text-align : center; margin-left : 22%;}"
+			  + "h1 { text-align : center; color : gray; }"
+			  
+			  + "</style>");
+			
+			out.println("</head><body><div><h1>사용자 데이터 변경</h1>");
 			out.println("<form action='/sems/users/update.bit' method='post' onsubmit='return re();'>");
 			out.println("<input type='text' name='uno' value='" + vo.getUno() +"' readonly><br>");
 			out.println("<input type='text' id='email' name='email' placeholder='Email' value='" + vo.getEmail() +"'><br>");
@@ -52,7 +56,8 @@ public class UsersUpdateServlet extends HttpServlet {
 			out.println("<input type='text' name='addr' placeholder='addr' value='" + vo.getAddr() +"'><br>");
 			out.println("<input type='text' name='photoPath' placeholder='photoPath' value='" + vo.getPhoto() +"'><br><br>");
 			out.println("<input type='submit' value='변경' onclick=check();>");
-			out.println("<input type='reset' value='취소'>");
+			out.println("<input type='reset' value='취소'><br><br>"
+					+ "<a href='list.bit?pageNo=1&pageSize=10'>List</a>");
 			out.println("</form></div>");
 			
 			out.println("<script>");
@@ -114,6 +119,7 @@ public class UsersUpdateServlet extends HttpServlet {
 			UsersVo vo = new UsersVo();
 			vo.setUno(Integer.parseInt(request.getParameter("uno")));
 			vo.setEmail(request.getParameter("email"));
+			vo.setPassword(request.getParameter("password"));
 			vo.setName(request.getParameter("name"));
 			vo.setTel(request.getParameter("tel"));
 			vo.setFax(request.getParameter("fax"));
@@ -128,7 +134,7 @@ public class UsersUpdateServlet extends HttpServlet {
 			response.sendRedirect("detail.bit?no=" + vo.getUno());
 			
 		} catch (Throwable e) {
-			out.println("오류 발생 했음!");
+			out.println("<h1>오류 발생 했음!</h1>");
 			e.printStackTrace();
 		}
 		out.println("</body></html>");

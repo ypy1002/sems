@@ -27,7 +27,18 @@ public class UsersDetailServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목상세정보</title></head><body>");
+		out.println("<html><head><title>사용자 상세 정보</title>"
+				+ "<style>"
+				
+				+ "body { width : 100%; height : 100%; background-color : black;}"
+				+ "a { text-decoration : none; color : yellow;}"
+				+ ".dd:hover { background-color : gray; }"
+				+ "div { width : 21%; margin-left : 40%; text-align : center;	}"
+				+ "th { border-radius : 20px; text-align : center; background-color : gray; width : 100px;}"
+				+ "td { border-radius : 20px; text-align : center; background-color : brown; height : 30px; font-weight: bold; width : 200px;}"
+				+ "h1 { text-align : center; color : gray; }"
+				+ "</style>"
+				+ "</head><body>");
 		try {
 			out.println("<h1>사용자 상세정보</h1>");
 			
@@ -38,7 +49,7 @@ public class UsersDetailServlet extends HttpServlet {
 			
 			UsersVo users = dao.detail(no);
 			
-			out.println("<table border='1'>");
+			out.println("<div><table>");
 			out.println("<tr>");
 			out.println("<th>No</th>");
 			out.println("<td>" + users.getUno() + "</td>");
@@ -84,14 +95,11 @@ public class UsersDetailServlet extends HttpServlet {
 			out.println("<td>"+ users.getPhoto() + "</td>");
 			out.println("</tr>");
 			
-			out.println("</table>");
-			out.println("<a href='list.bit?pageNo=1&pageSize=10'>목록</a> ");
-			out.println("<a href='delete.bit?no="
-					+ users.getUno()
-					+ "'>삭제</a> ");
-			out.println("<a href='update.bit?no="
-					+ users.getUno()
-					+ "'>변경</a><br>");
+			out.println("</table><br><br>");
+			out.println("<a href='list.bit?pageNo=1&pageSize=10'>List</a><br><br>");
+			out.println("<a href='delete.bit?no=" + users.getUno() + "'>Delete</a><br><br>");
+			out.println("<a href='update.bit?no=" + users.getUno() + "'>Update</a></div>");
+			
 		} catch (Throwable e) {
 			out.println("오류 발생 했음!");
 			e.printStackTrace();
