@@ -44,9 +44,9 @@ public class CourseUpdateServlet extends HttpServlet {
 			
 			out.println("<!DOCTYPE html>");
 			out.println("<html><head>");
-			out.println("meta charset='UTF-8'>");
-			out.println("<title>과목 변경폼</title></head><body>");
-			out.println("<h1>과목 변경</h1>");
+			out.println("<meta charset='UTF-8'>");
+			out.println("<title>과정 변경폼</title></head><body>");
+			out.println("<h1>과정 변경</h1>");
 			out.println("<form action='update.bit' method='post'>");
 			out.println("번호: <input type='text' name='no' value='"
 					+ courseVo.getCno() 
@@ -76,7 +76,7 @@ public class CourseUpdateServlet extends HttpServlet {
 			out.println("<html><head><title>과목변경</title></head><body>");
 			
 			try{
-				out.println("<h1>과목 변경 결과</h1>");
+				out.println("<h1>과정 변경 결과</h1>");
 				CourseDao dao = (CourseDao)this.getServletContext()
 						.getAttribute("courseDao");
 				
