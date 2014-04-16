@@ -16,6 +16,11 @@ import sems2.vo.CourseVo;
 @WebServlet("/course/insert.bit")
 @SuppressWarnings("serial")
 public class CourseInsertServlet extends HttpServlet {
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+		doGet(request, response);
+	}
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -26,7 +31,9 @@ public class CourseInsertServlet extends HttpServlet {
 		//		-	getParameter()를 호출하기 전에 실행해야 한다.
 		//		단, 한번이라도 getParameter()를 호출했다면 적용안됨
 		
-		request.setCharacterEncoding("UTF-8");
+		//형덕스님께서 필터를 잘 만드셨다면 이녀석을 주석처리해도 아무 문제가 없겠지요 관세음보살
+		//request.setCharacterEncoding("UTF-8");
+		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<html><head><title>과목등록</title>"
@@ -34,8 +41,6 @@ public class CourseInsertServlet extends HttpServlet {
 				
 				+ "body { background-color : gray;}"
 				+ "h1 { text-align : center;}"
-				+ "#abox { text-align : center;} "
-				+ "#a { text-align : center; text-decoration: none; color : yellow;}"
 				
 				+ "</style></head><body>");
 		
@@ -51,12 +56,12 @@ public class CourseInsertServlet extends HttpServlet {
 		
 			dao.insert(courseVo);
 			out.println("<h1>등록 성공</h1>");
-
+			
+			response.setHeader("Refresh", "1;url=list.bit?pageNo=1&pageSize=10");
 		}catch(Throwable e){
 			out.println("<h1>오류 발생! 이미 등록된 데이터</h1>");
 		}
-		out.println("</body><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>메뉴로</a><br><br>"
-				+ "<a id = 'a' href='list.bit?pageNo=1&pageSize=10'>리스트로</a></div></html>");
+		out.println("</body></html>");
 	}
 
 }
