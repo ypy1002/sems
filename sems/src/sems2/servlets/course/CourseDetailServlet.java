@@ -35,8 +35,6 @@ public class CourseDetailServlet extends HttpServlet {
 				+ "#no { width : 100px;}"
 				+ "#su { width : 300px;}"
 				+ "td:hover { background-color : white; color : black;}"
-				+ "#abox { text-align : center;}"
-				+ "#a { text-align : center; text-decoration: none; color : yellow;}"
 				+ "textarea { background-color : brown; color : white; border-radius : 10px;}"
 				
 				+ "</style></head><body>");
@@ -56,11 +54,18 @@ public class CourseDetailServlet extends HttpServlet {
 			out.println("<tr><th>교육시간</th><td>" + course.getHours() +"</td></tr>");
 			out.println("<tr><th>내용</th><td><textarea rows='5' cols='60'>" + course.getDescription() +"</textarea></td></tr>");
 			out.println("</table></div>");
+			
+			out.println("<a href='list.bit?pageNo=1&pageSize=10'>목록</a> ");
+			out.println("<a href='delete.bit?no="
+					+ course.getCno()
+					+ "'>삭제</a> ");
+			out.println("<a href='update.bit?no="
+					+ course.getCno()
+					+ "'>변경</a><br>");
 		}catch(Throwable e){
 			out.println("<h1>오류 발생! 등록되지 않은 데이터 번호! </h1>");
 			e.printStackTrace();
 		}
-		out.println("</body><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>메뉴로</a><br><br>"
-				+ "<a id = 'a' href='list.bit?pageNo=1&pageSize=10'>리스트로</a></div></html>");
+		out.println("</body></html>");
 	}
 }
