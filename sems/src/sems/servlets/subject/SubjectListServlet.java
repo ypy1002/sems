@@ -26,8 +26,9 @@ public class SubjectListServlet extends HttpServlet {
 		out.println("<html><head><title>과목목록</title><style>body{background-color : gray;}"
 				+ " td { background-color : black; color : white; text-align : center; border-radius : 5px;}"
 				+ " h1 { text-align : center; } div { width : 400px; margin-left : 39%;} th{ border-radius : 5px; background-color : violet; } "
-				+ "#no { width : 50px; } #su { width : 300px; } td:hover { background-color : white; color : black; }"
-				+ "#abox { text-align : center; } #a { text-align : center; text-decoration: none; color : yellow;}</style></head><body>");
+				+ "#no { width : 50px; } #su { width : 300px; } .td1:hover { background-color : white; color : black; }"
+				+ "#abox { text-align : center; } #a { text-align : center; text-decoration: none; color : yellow;}"
+				+ "#al { text-decoration: none; color : violet; }</style></head><body>");
 		
 		try{
 			out.println("<h1>과목 목록</h1>");
@@ -42,7 +43,7 @@ public class SubjectListServlet extends HttpServlet {
 			out.println("<div><table><tr><th id='no'>번호</th><th id='su'>과목명</th></tr>");
 			
 			for(SubjectVo subject : list){
-				out.println("<tr><td>" + subject.getNo() + "</td><td>" + subject.getTitle() +"</td><tr>");
+				out.println("<tr><td>" + subject.getNo() + "</td><td class='td1'><a id='al' href='detail.bit?no=" + subject.getNo() + "'>" + subject.getTitle() +"</a></td><tr>");
 			}
 		}catch(Throwable e){
 			out.println("오류 발생!");
