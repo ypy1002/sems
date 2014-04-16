@@ -24,7 +24,7 @@ public class CourseListServlet extends HttpServlet {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목목록</title>"
+		out.println("<html><head><title>과정목록</title>"
 				+ "<style>"
 				
 				+ "body {background-color : gray;}"
@@ -50,18 +50,27 @@ public class CourseListServlet extends HttpServlet {
 			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
 		
 			List<CourseVo> list = dao.list(pageNo, pageSize);
-
-			out.println("<div><table><tr><th id='no'>번호</th><th id='su'>과정명</th><th>삭제</th></tr>");
+			out.println("<a href='courseform.html'>새과정</a><br>");
+			out.println("<table border='1'>");
+			out.println("<tr>");
+			out.println("	<th>번호</th>");
+			out.println("	<th>과정명</th>");
+			out.println("</tr>");
 			
 			for(CourseVo course : list){
-				out.println("<tr><td>" + course.getCno() + "</td><td class='td1'><a id='al' href='detail.bit?no=" + course.getCno() + "'>" + course.getTitle() +"</a></td>"
-						+ "<td class='td1'><a id='al' href='delete.bit?no=" + course.getCno() + "'>삭제</a></td>");
+				out.println("<tr>");
+				out.println("	<td>" + course.getCno() + "</td>");
+				out.println("	<td><a href='detail.bit?no="	
+				+ course.getCno()	
+				+ "'>" 	+ course.getTitle() + "</a></td>");
+				out.println("</tr>");
 			}
+			out.println("</table>");	
 		}catch(Throwable e){
 			out.println("오류 발생!");
 		}
 		
-		out.println("</table></div><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>메뉴로</a><br><br></div></body></html>");
+		out.println("</body></html>");
 	}
 
 }
