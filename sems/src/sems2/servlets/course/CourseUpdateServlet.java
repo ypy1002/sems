@@ -34,8 +34,6 @@ public class CourseUpdateServlet extends HttpServlet {
 				
 				+ "body { background-color : gray;}"
 				+ "h1 { text-align : center;} "
-				+ "#abox { text-align : center;} "
-				+ "#a { text-align : center; text-decoration: none; color : yellow;}"
 				
 				+ "</style></head><body>");
 		
@@ -52,12 +50,13 @@ public class CourseUpdateServlet extends HttpServlet {
 			
 			dao.update(courseVo);
 			out.println("<h1>변경 성공</h1>");
+			
+			response.sendRedirect("detail.bit?no=" + courseVo.getCno());
 
 		}catch(Throwable e){
 			out.println("<h1>오류 발생! 이미 등록된 데이터 또는, 없는 데이터 번호</h1>");
 		}
-		out.println("</body><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>메뉴로</a><br><br>"
-				+ "<a id = 'a' href='list.bit?pageNo=1&pageSize=10'>리스트로</a></div></html>");
+		out.println("</body></html>");
 	}
 
 }
