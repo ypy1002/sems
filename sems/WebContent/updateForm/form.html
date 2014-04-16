@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>변경</title>
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+<style>
+    
+   body { width : 100%; height : 100%; background-color : black;}
+   input { border-radius : 5px;}
+   a { text-decoration : none; color : yellow;}
+   div { width : 50%; margin-left : 24%; text-align : center;}
+   h1 { text-align : center; color : gray; }
+
+</style>
+</head>
+<body>
+<div>
+<h1>변경할 데이터 번호?</h1>
+<form action="/sems/users/update.bit">
+<input type="text" name="no" placeholder="No"><br>
+
+<input type="submit" value="변경">
+<input type="reset" value="취소">
+</form><br><br>
+<a href='/sems/index.html'>Munu</a><br><br>
+<a href='/sems/users/list.bit?pageNo=1&pageSize=10'>List</a>
+</div>
+
+</body>
+</html>
