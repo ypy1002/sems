@@ -2,8 +2,8 @@ package sems3.servlets.users;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,21 +26,7 @@ public class UsersDetailServlet extends HttpServlet {
 	    throws ServletException, IOException {
 		
 		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>사용자 상세 정보</title>"
-				+ "<style>"
-				
-				+ "body { width : 100%; height : 100%; background-color : black;}"
-				+ "a { text-decoration : none; color : yellow;}"
-				+ ".dd:hover { background-color : gray; }"
-				+ "div { width : 21%; margin-left : 40%; text-align : center;	}"
-				+ "th { border-radius : 20px; text-align : center; background-color : gray; width : 100px;}"
-				+ "td { border-radius : 20px; text-align : center; background-color : brown; height : 30px; font-weight: bold; width : 200px;}"
-				+ "h1 { text-align : center; color : gray; }"
-				+ "</style>"
-				+ "</head><body>");
 		try {
-			out.println("<h1>사용자 상세정보</h1>");
 			
 			UsersDao dao = (UsersDao)this.getServletContext()
 					.getAttribute("usersDao");
@@ -49,77 +35,18 @@ public class UsersDetailServlet extends HttpServlet {
 			
 			UsersVo users = dao.detail(no);
 			
-			out.println("<div><table>");
-			out.println("<tr>");
-			out.println("<th>No</th>");
-			out.println("<td>" + users.getUno() + "</td>");
-			out.println("</tr>");
+		request.setAttribute("users", users);
 			
-			out.println("<tr>");
-			out.println("<th>Email</th>");
-			out.println("<td>" + users.getEmail() + "</td>");
-			out.println("</tr>");
+			RequestDispatcher rd = 
+					request.getRequestDispatcher("/users/detail.jsp");
+			rd.forward(request, response);
 			
-			out.println("<tr>");
-			out.println("<th>Password</th>");
-			out.println("<td>"+ users.getPassword() + "</td>");
-			out.println("</tr>");
-			
-			out.println("<tr>");
-			out.println("<th>Name</th>");
-			out.println("<td>"+ users.getName() + "</td>");
-			out.println("</tr>");
-			
-			out.println("<tr>");
-			out.println("<th>Tel</th>");
-			out.println("<td>"+ users.getTel() + "</td>");
-			out.println("</tr>");
-			
-			out.println("<tr>");
-			out.println("<th>Fax</th>");
-			out.println("<td>"+ users.getFax() + "</td>");
-			out.println("</tr>");
-			
-			out.println("<tr>");
-			out.println("<th>PostNo</th>");
-			out.println("<td>"+ users.getPostNo() + "</td>");
-			out.println("</tr>");
-			
-			out.println("<tr>");
-			out.println("<th>Addr</th>");
-			out.println("<td>"+ users.getAddr() + "</td>");
-			out.println("</tr>");
-			
-			out.println("<tr>");
-			out.println("<th>Photo_Path</th>");
-			out.println("<td>"+ users.getPhoto() + "</td>");
-			out.println("</tr>");
-			
-			out.println("</table><br><br>");
-			out.println("<a href='list.bit?pageNo=1&pageSize=10'>List</a><br><br>");
-			out.println("<a href='delete.bit?no=" + users.getUno() + "'>Delete</a><br><br>");
-			out.println("<a href='update.bit?no=" + users.getUno() + "'>Update</a></div>");
 			
 		} catch (Throwable e) {
-			out.println("오류 발생 했음!");
 			e.printStackTrace();
 		}
-		out.println("</body></html>");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

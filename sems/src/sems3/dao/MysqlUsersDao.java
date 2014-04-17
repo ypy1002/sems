@@ -29,7 +29,7 @@ public class MysqlUsersDao implements UsersDao {
 			
 			con = dbConnectionPool.getConnection();
 			
-			stmt = con.prepareStatement("insert SE_USERS(EMAIL, PWD, NAME, TEL, FAX, POSTNO, ADDR, PHOT) values(?, ?, ?, ?, ?, ?, ?, ?)");
+			stmt = con.prepareStatement("insert SE_USERS(EMAIL, PWD, NAME, TEL, FAX, POSTNO, ADDR, PHOT_PATH) values(?, ?, ?, ?, ?, ?, ?, ?)");
 			stmt.setString(1, users.getEmail());
 			stmt.setString(2, users.getPassword());
 			stmt.setString(3, users.getName());
@@ -88,7 +88,7 @@ public class MysqlUsersDao implements UsersDao {
 			con = dbConnectionPool.getConnection();
 			
 			stmt = con.prepareStatement(
-					"select UNO, EMAIL, PWD, NAME, TEL, FAX, POSTNO, ADDR, PHOT from SE_USERS"
+					"select UNO, EMAIL, PWD, NAME, TEL, FAX, POSTNO, ADDR, PHOT_PATH from SE_USERS"
 							+ " where UNO=?");
 			stmt.setInt(1, no);
 			rs = stmt.executeQuery();
@@ -96,9 +96,9 @@ public class MysqlUsersDao implements UsersDao {
 			if (rs.next()) {
 				return new UsersVo().setUno(rs.getInt("UNO")).setEmail(rs.getString("EMAIL")).setPassword(rs.getString("PWD"))
 						.setName(rs.getString("NAME")).setTel(rs.getString("TEL")).setFax(rs.getString("FAX"))
-						.setPostNo(rs.getString("POSTNO")).setAddr(rs.getString("ADDR")).setPhoto(rs.getString("PHOT"));
+						.setPostNo(rs.getString("POSTNO")).setAddr(rs.getString("ADDR")).setPhoto(rs.getString("PHOT_PATH"));
 			} else {
-				throw new Exception("해당 과목을 찾을 수 없습니다.");
+				throw new Exception("해당 유저를 찾을 수 없습니다.");
 			}
 		} catch (Throwable e) {
 			throw e;
@@ -153,3 +153,4 @@ public class MysqlUsersDao implements UsersDao {
 		}
 	}
 }
+

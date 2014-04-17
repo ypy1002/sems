@@ -13,6 +13,7 @@ public class UsersVo {
 	private String postNo;
 	private String addr;
 	private String photo;
+	private String description;
 	
 	public int getUno() {
 		return uno;
@@ -77,6 +78,11 @@ public class UsersVo {
 		this.photo = photo;
 		return this;
 	}
+	public String getDescription() {
+	  return description;
+  }
+	public void setDescription(String description) {
+	  this.description = description;
+  }
 	
 }
-
