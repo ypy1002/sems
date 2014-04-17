@@ -116,7 +116,7 @@ public class MysqlUsersDao implements UsersDao {
 			con = dbConnectionPool.getConnection();
 			
 			stmt = con.prepareStatement(
-					"update SE_USERS set EMAIL=?, PWD=?, NAME=?, TEL=?, FAX=?, POSTNO=?, ADDR=?, PHOT=? where UNO=?");
+					"update SE_USERS set EMAIL=?, PWD=?, NAME=?, TEL=?, FAX=?, POSTNO=?, ADDR=?, PHOT_PATH=? where UNO=?");
 			stmt.setString(1, users.getEmail());
 			stmt.setString(2, users.getPassword());
 			stmt.setString(3, users.getName());
