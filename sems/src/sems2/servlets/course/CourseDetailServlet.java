@@ -13,59 +13,90 @@ import javax.servlet.http.HttpServletResponse;
 import sems2.dao.CourseDao;
 import sems2.vo.CourseVo;
 
+/* 목록으로 가기, 삭제하기 링크 추가
+ * 
+ */
+
 @WebServlet("/course/detail.bit")
 @SuppressWarnings("serial")
-
 public class CourseDetailServlet extends HttpServlet {
-	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(
+			HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목상세정보</title>"
+		out.println("<html><head><title>과정 상세 정보</title>"
 				+ "<style>"
 				
-				+ "body{background-color : gray;}"
-				+ "td { background-color : black; color : white; text-align : center; border-radius : 5px;}"
-				+ "h1 { text-align : center;}"
-				+ "div { width : 600px; margin-left : 31%;}"
-				+ "th{ border-radius : 5px; background-color : violet;} "
-				+ "#no { width : 100px;}"
-				+ "#su { width : 300px;}"
-				+ "td:hover { background-color : white; color : black;}"
-				+ "textarea { background-color : brown; color : white; border-radius : 10px;}"
-				
-				+ "</style></head><body>");
-		
-		try{
+				+ "body { width : 100%; height : 100%; background-color : black;}"
+				+ "a { text-decoration : none; color : yellow;}"
+				+ ".dd:hover { background-color : gray; }"
+				+ "div { width : 21%; margin-left : 40%; text-align : center;	}"
+				+ "th { border-radius : 20px; text-align : center; background-color : gray; width : 100px;}"
+				+ "td { border-radius : 20px; text-align : center; background-color : brown; height : 30px; font-weight: bold; width : 200px;}"
+				+ "textarea { border-radius : 20px;  background-color : brown; font-weight: bold; width : 200px; text-align : center;}"
+				+ "h1 { text-align : center; color : gray; }"
+				+ "</style>"
+				+ "</head><body>");
+		try {
 			out.println("<h1>과정 상세정보</h1>");
 			
-			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("courseDao");
+			CourseDao dao = (CourseDao)this.getServletContext()
+					.getAttribute("courseDao");
 			
-			int no = Integer.parseInt(request.getParameter("no"));
-		
+			int no = Integer.parseInt(request.getParameter("no")); 
+			
 			CourseVo course = dao.detail(no);
-
-			out.println("<div><table>");
-			out.println("<tr><th id='no'>번호</th><td>" + course.getCno() +"</td></tr>");
-			out.println("<tr><th>과정명</th><td>" + course.getTitle() +"</td></tr>");
-			out.println("<tr><th>교육시간</th><td>" + course.getHours() +"</td></tr>");
-			out.println("<tr><th>내용</th><td><textarea rows='5' cols='60'>" + course.getDescription() +"</textarea></td></tr>");
-			out.println("</table></div>");
 			
-			out.println("<a href='list.bit?pageNo=1&pageSize=10'>목록</a> ");
-			out.println("<a href='delete.bit?no="
-					+ course.getCno()
-					+ "'>삭제</a> ");
-			out.println("<a href='update.bit?no="
-					+ course.getCno()
-					+ "'>변경</a><br>");
-		}catch(Throwable e){
-			out.println("<h1>오류 발생! 등록되지 않은 데이터 번호! </h1>");
+			out.println("<div><table>");
+			out.println("<tr>");
+			out.println("<th>No</th>");
+			out.println("<td>" + course.getCno() + "</td>");
+			out.println("</tr>");
+			
+			out.println("<div><table>");
+			out.println("<tr>");
+			out.println("<th>Title</th>");
+			out.println("<td>" + course.getTitle() + "</td>");
+			out.println("</tr>");
+			
+			out.println("<tr>");
+			out.println("<th>Description</th>");
+			out.println("<td><textarea rows='5' cols='40'>" + course.getDescription() + "</textarea></td>");
+			out.println("</tr>");
+			
+			out.println("<tr>");
+			out.println("<th>Hours</th>");
+			out.println("<td>"+ course.getHours() + "</td>");
+			out.println("</tr>");
+			
+			out.println("</table><br><br>");
+			out.println("<a href='list.bit?pageNo=1&pageSize=10'>List</a><br><br>");
+			out.println("<a href='delete.bit?no=" + course.getCno() + "'>Delete</a><br><br>");
+			out.println("<a href='update.bit?no=" + course.getCno() + "'>Update</a></div>");
+			
+		} catch (Throwable e) {
+			out.println("오류 발생 했음!");
 			e.printStackTrace();
 		}
 		out.println("</body></html>");
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

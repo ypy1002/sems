@@ -12,47 +12,63 @@ import javax.servlet.http.HttpServletResponse;
 
 import sems2.dao.CourseDao;
 
+/* Refresh
+ * - 일정시간 후 서버에 지정된 URL을 요청하게 만듦
+ * - 1) 응답 헤더에 리프래시 정보 심기
+ * - 2) HTML 헤더에 리프래시 정보 심기 
+ * 
+ * Redirect
+ * - 클라이언트에게 다시 요청할 주소를 알려줌.
+ * - 경과 시간 지정 불가!
+ * - 콘텐츠를 보내지 않는다.
+ */
+
 @WebServlet("/course/delete.bit")
 @SuppressWarnings("serial")
 public class CourseDeleteServlet extends HttpServlet {
-	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
-		//	POST요청의 값에 대해 적용. GET요청의 값은 ?
-		//		-	서블릿 컨테이너의 안내에 따라 설정한다.
-		//		-	getParameter()를 호출하기 전에 실행해야 한다.
-		//		단, 한번이라도 getParameter()를 호출했다면 적용안됨
+	protected void doGet(
+			HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
 		
-		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목삭제</title>"
-				+ "<style>"
-				
-				+ "body { background-color : gray;}"
-				+ "h1 { text-align : center;}"
-				+ "#abox { text-align : center;} "
-				+ "#a { text-align : center; text-decoration: none; color : yellow;}"
-				
-				+ "</style></head><body>");
+		out.println("<html><head><title>사용자 데이터 삭제</title>");
 		
-		try{
-			out.println("<h1>과목 삭제 결과</h1>");
+		out.println("</head><body>");
+		
+		try {
+			out.println("<h1>사용자 데이터 삭제 결과</h1>");
 			
-			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("courseDao");
+			CourseDao dao = (CourseDao)this.getServletContext()
+					.getAttribute("courseDao");
 			
-			dao.delete(Integer.parseInt(request.getParameter("no")));
+			int no = Integer.parseInt(request.getParameter("no"));
 			
-			out.println("<h1>삭제 성공</h1>");
+			dao.delete(no);
 			
 			response.sendRedirect("list.bit?pageNo=1&pageSize=10");
-
-		}catch(Throwable e){
-			out.println("<h1>오류 발생! 없는 데이터 번호</h1>");
+			
+		} catch (Throwable e) {
+			out.println("오류 발생 했음!");
+			e.printStackTrace();
 		}
-		out.println("</body><div id='abox'><a id = 'a' href='http://192.168.200.77:9998/sems/index.html'>메뉴로</a><br></div></html>");
+		out.println("</body></html>");
 	}
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
