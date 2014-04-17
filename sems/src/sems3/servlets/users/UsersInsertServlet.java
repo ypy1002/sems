@@ -4,6 +4,7 @@ package sems3.servlets.users;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,13 +36,7 @@ public class UsersInsertServlet extends HttpServlet {
 		// CharacterEncodingFilter로 대체함.
 		//request.setCharacterEncoding("UTF-8");
 		
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과목등록</title></head><body>");
-		
 		try {
-			out.println("<h1>과목 등록 결과</h1>");
-			
 			UsersDao dao = (UsersDao)this.getServletContext()
 					.getAttribute("usersDao");
 			
@@ -56,31 +51,11 @@ public class UsersInsertServlet extends HttpServlet {
 			vo.setPhoto(request.getParameter("photoPath"));
 			
 			dao.insert(vo);
-			
-			out.println("등록 성공!");
-			
-		response.setHeader("Refresh", "1;url=list.bit?pageNo=1&pageSize=10");
-			
+			RequestDispatcher rd =
+					request.getRequestDispatcher("/users/insert.jsp");
+			rd.forward(request, response);
 		} catch (Throwable e) {
-			out.println("오류 발생 했음!");
 			e.printStackTrace();
 		}
-		out.println("</body></html>");
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
