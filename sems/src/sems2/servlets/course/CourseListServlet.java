@@ -14,63 +14,64 @@ import javax.servlet.http.HttpServletResponse;
 import sems2.dao.CourseDao;
 import sems2.vo.CourseVo;
 
+/* 과목명에 상세보기 링크 추가
+ * 
+ */
+
 @WebServlet("/course/list.bit")
 @SuppressWarnings("serial")
 public class CourseListServlet extends HttpServlet {
-	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(
+			HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
 		
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>과정목록</title>"
+		out.println("<html><head><title>과정 목록</title>"
+				
 				+ "<style>"
-				
-				+ "body {background-color : gray;}"
-				+ "td { background-color : black; color : white; text-align : center; border-radius : 5px;}"
-				+ "h1 { text-align : center;}"
-				+ "div { width : 400px; margin-left : 39%;}"
-				+ "th{ border-radius : 5px; background-color : violet;} "
-				+ "#no { width : 50px;}"
-				+ "#su { width : 300px;}"
-				+ ".td1:hover { background-color : white; color : black;}"
-				+ "#abox { text-align : center;}"
-				+ "#a { text-align : center; text-decoration: none; color : yellow;}"
-				+ "#al { text-decoration: none; color : violet;}"
-				
-				+ "</style></head><body>");
-		
-		try{
-			out.println("<h1>과정 목록</h1>");
+				+ "body { width : 100%; height : 100%; background-color : black;}"
+				+ "a { text-decoration : none; color : yellow; font-weight : bold;}"
+				+ ".dd:hover { background-color : gray; }"
+				+ "div { width : 50%; margin-left : 25%; text-align : center;}"
+				+ "th { border-radius : 20px; text-align : center; background-color : gray; width : 100px;}"
+				+ "td { border-radius : 20px; text-align : center; background-color : brown; height : 30px; font-weight: bold;}"
+				+ "h1 { text-align : center; color : gray; }"
+				+ "table { margin-left : 17%;}"
+				+ "</style>"
+				+ "</head><body>");
+		try {
 			
-			CourseDao dao = (CourseDao) this.getServletContext().getAttribute("courseDao");
+			CourseDao dao = (CourseDao)this.getServletContext()
+																							.getAttribute("courseDao");
 			
-			int pageNo = Integer.parseInt(request.getParameter("pageNo"));
-			int pageSize = Integer.parseInt(request.getParameter("pageSize"));
-		
+			int pageNo = Integer.parseInt(request.getParameter("pageNo")); 
+			int pageSize = Integer.parseInt(request.getParameter("pageSize")); 
+			
 			List<CourseVo> list = dao.list(pageNo, pageSize);
-			out.println("<a href='insertForm/courseForm.html'>새과정</a><br>");
-			out.println("<table border='1'>");
+			
+			out.println("<div><table>");
+			out.println("<h1>과정 목록</h1>");
 			out.println("<tr>");
-			out.println("	<th>번호</th>");
-			out.println("	<th>과정명</th>");
+			out.println("<th>No</th><th>Title</th><th>Detail</th><th>Update</th><th>Delete</th>");
 			out.println("</tr>");
 			
-			for(CourseVo course : list){
+			for (CourseVo course : list) {
 				out.println("<tr>");
-				out.println("	<td>" + course.getCno() + "</td>");
-				out.println("	<td><a href='detail.bit?no="	
-				+ course.getCno()	
-				+ "'>" 	+ course.getTitle() + "</a></td>");
+				out.println("<td>" + course.getCno() + "</td>");
+				out.println("<td>" + course.getTitle() + "</td>");
+				out.println("<td class='dd'><a href='detail.bit?no=" + course.getCno() + "'>View</a></td>");
+				out.println("<td class='dd'><a href='update.bit?no=" + course.getCno() + "'>Update</a></td>");
+				out.println("<td class='dd'><a href='delete.bit?no=" + course.getCno() + "'>Delete</a></td>");
 				out.println("</tr>");
 			}
-			out.println("</table>");	
-		}catch(Throwable e){
-			out.println("오류 발생!");
+			out.println("</table><br><br>");
+			out.println("<a href='/sems/course/insertForm/form.html'>Insert</a><br><br><a href='/sems/index.html'>Menu</a></div>");
+		} catch (Throwable e) {
+			out.println("오류 발생 했음!");
+			e.printStackTrace();
 		}
-		
 		out.println("</body></html>");
 	}
-
 }
