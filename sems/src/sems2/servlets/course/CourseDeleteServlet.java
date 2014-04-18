@@ -31,14 +31,7 @@ public class CourseDeleteServlet extends HttpServlet {
 			HttpServletRequest request, HttpServletResponse response)
 	    throws ServletException, IOException {
 		
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>사용자 데이터 삭제</title>");
-		
-		out.println("</head><body>");
-		
 		try {
-			out.println("<h1>사용자 데이터 삭제 결과</h1>");
 			
 			CourseDao dao = (CourseDao)this.getServletContext()
 					.getAttribute("courseDao");
@@ -50,10 +43,8 @@ public class CourseDeleteServlet extends HttpServlet {
 			response.sendRedirect("list.bit?pageNo=1&pageSize=10");
 			
 		} catch (Throwable e) {
-			out.println("오류 발생 했음!");
 			e.printStackTrace();
 		}
-		out.println("</body></html>");
 	}
 }
 
