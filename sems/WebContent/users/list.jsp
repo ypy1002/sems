@@ -2,9 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% 
-List<UsersVo> list = (List<UsersVo>) request.getAttribute("list");  
-%>   
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -12,49 +11,49 @@ List<UsersVo> list = (List<UsersVo>) request.getAttribute("list");
 <title>유저목록</title>
 <style>
 body {
+  background-image:url('b.JPG');
+  background-size: 100%;
 	width: 100%;
 	height: 100%;
-	background-color: black;
 }
-
 a {
 	text-decoration: none;
-	color: yellow;
 	font-weight: bold;
+	color: navy;
 }
-
 .dd:hover {
-	background-color: gray;
+	background-color: silver;
 }
-
 div {
-	width: 50%;
-	margin-left: 24%;
+  font-family: serif;
+	width: 45%;
+	margin-top: 3%;
+	margin-left: 31%;
 	text-align: center;
 }
-
 th {
-	border-radius: 20px;
+	border-radius: 15px;
 	text-align: center;
-	background-color: gray;
+	background-color: aqua;
 	width: 100px;
 }
-
 td {
-	border-radius: 20px;
+	border-radius: 15px;
 	text-align: center;
-	background-color: brown;
+	background-color: #ff5566;
 	height: 30px;
 	font-weight: bold;
 }
-
 h1 {
 	text-align: center;
-	color: gray;
 }
-
 #ds {
 	width: 200px;
+}
+.go {
+  color: maroon;
+  margin: 10px;
+  font-size: x-large;
 }
 </style>
 </head>
@@ -72,24 +71,21 @@ h1 {
 				<th>Update</th>
 				<th>Delete</th>
 			</tr>
-			
-			<%for(UsersVo users : list){%>
+			<c:forEach var="users" items="${list}">
 			<tr>
-				<td><%=users.getUno()%></td>
-				<td><%=users.getEmail()%></td>
-				<td><%=users.getPassword()%></td>
-				<td><%=users.getName()%></td>
-				<td id='ds'><%=users.getTel()%></td>
-				<td class='dd'><a href='detail.bit?no=15'>View</a></td>
-				<td class='dd'><a href='update.bit?no=15'>Update</a></td>
-				<td class='dd'><a href='delete.bit?no=15'>Delete</a></td>
+				<td>${users.uno}</td>
+				<td>${users.email}</td>
+				<td>${users.password}</td>
+				<td>${users.name}</td>
+				<td id='ds'>${users.tel}</td>
+				<td class='dd'><a href='detail.bit?no=${users.uno}'>View</a></td>
+				<td class='dd'><a href='update.bit?no=${users.uno}'>Update</a></td>
+				<td class='dd'><a href='delete.bit?no=${users.uno}'>Delete</a></td>
 			</tr>
-		<%}%>	
+		</c:forEach>
 		</table>
-		<br>
-		<br> <a href='/sems/insertForm/form.html'>Insert</a><br>
-		<br>
-		<a href='/sems/index.html'>Menu</a>
+		<a class='go' href='/sems/insertForm/form.html'>Insert</a>
+		<a class='go' href='/sems/index.html'>Menu</a>
 	</div>
 </body>
 </html>
