@@ -3,10 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+  <link rel="stylesheet" href="jqueryUI/css/ui-lightness/jquery-ui-1.10.4.custom.css">
+  <script src="jqueryUI/js/jquery-1.10.2.js"></script>
+  <script src="jqueryUI/js/jquery-ui-1.10.4.custom.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css"> 
 <style>
 
-body{ width: 100%; height: 100%; font-size: 15px; background-color : black;}
-h1 { color : yellow; }
+body{ width: 100%; height: 100%; font-size: 15px; background : url("back.jpg") no-repeat; background-size:100% 140%;}
+h1 { color : Brown; }
 #box { border : 2px yellow solid; height : 270px; background-color : black; border-radius : 40px; margin-top : 10%; width: 50%; margin-left: 25%;}
 #subjs , #cours , #users { width: 30%; text-align: center; float: left;}
 #subjs { margin-left: 3.5%;}
@@ -14,36 +18,51 @@ h1 { color : yellow; }
 #subjs>a:hover {color : yellow; font-size: 200%;}
 #cours>a:hover {color : yellow; font-size: 200%;}
 #users>a:hover {color : yellow; font-size: 200%;}
-
+#tabs { width : 20%; margin-left : 60%; margin-top : 10%;}
+a { text-decoration: none;}
+span { color : green; font-weight : bold; }
+span:hover { color : brown;}
 </style>
+  <script>
+  $(function() {
+	    $( "#tabs" ).tabs({
+	      event: "mouseover"
+	    });
+	  });
+  </script>
 </head>
 <body>
-<div id="box">
-<div id="subjs">
-<h1>과목 관리</h1>
-<a href="subject/list.bit?pageNo=1&pageSize=10">1. 과목 목록</a><br><br>
-<a href="subject/detail.bit?no=2409">2. 과목 조회</a><br><br>
-<a href="subject/insert.bit?title=등록됬어요&description=등록됬어요">3. 과목 등록</a><br><br>
-<a href="subject/update.bit?no=2409&title=변경됬어요&description=변경됬어요">4. 과목 변경</a><br><br>
-<a href="subject/delete.bit?no=2402">5. 과목 삭제</a><br><br>
-</div>
 
-<div id="cours">
-<h1>과정 관리</h1>
-<a href="course/list.bit?pageNo=1&pageSize=10">1. 과정 목록</a><br><br>
-<a href="/sems/course/detailForm/form.html">2. 과정 조회</a><br><br>
-<a href="/sems/course/insertForm/form.html">3. 과정 등록</a><br><br>
-<a href="/sems/course/updateForm/form.html">4. 과정 변경</a><br><br>
-<a href="/sems/course/deleteForm/form.html">5. 과정 삭제</a><br><br>
-</div>
-  
-<div id="users">
-<h1>사용자 관리</h1>
-<a href="users/list.bit?pageNo=1&pageSize=10">1. 사용자 목록</a><br><br>
-<a href="/sems/users/detailForm/form.html">2. 사용자 조회</a><br><br>
-<a href="/sems/users/insertForm/form.html">3. 사용자 등록</a><br><br>
-<a href="/sems/users/updateForm/form.html">4. 사용자 변경</a><br><br>
-<a href="/sems/users/deleteForm/form.html">5. 사용자 삭제</a><br><br>
+<div id="tabs">
+  <ul>
+    <li><a href="#tabs-1">Subject</a></li>
+    <li><a href="#tabs-2">Course</a></li>
+    <li><a href="#tabs-3">Users</a></li>
+  </ul>
+  <div id="tabs-1">
+		<h1>과목 관리</h1>
+		<a href="subject/list.bit?pageNo=1&pageSize=10"><span>1. 과목 목록</span></a><br><br>
+		<a href="subject/detail.bit?no=2409"><span>2. 과목 조회</span></a><br><br>
+		<a href="subject/insert.bit?title=등록됬어요&description=등록됬어요"><span>3. 과목 등록</span></a><br><br>
+		<a href="subject/update.bit?no=2409&title=변경됬어요&description=변경됬어요"><span>4. 과목 변경</span></a><br><br>
+		<a href="subject/delete.bit?no=2402"><span>5. 과목 삭제</span></a><br><br>
+  </div>
+  <div id="tabs-2">
+		<h1>과정 관리</h1>
+		<a href="course/list.bit?pageNo=1&pageSize=10"><span>1. 과정 목록</span></a><br><br>
+		<a href="/sems/course/detailForm/form.html"><span>2. 과정 조회</span></a><br><br>
+		<a href="/sems/course/insertForm/form.html"><span>3. 과정 등록</span></a><br><br>
+		<a href="/sems/course/updateForm/form.html"><span>4. 과정 변경</span></a><br><br>
+		<a href="/sems/course/deleteForm/form.html"><span>5. 과정 삭제</span></a><br><br>
+  </div>
+  <div id="tabs-3">
+	  <h1>사용자 관리</h1>
+		<a href="users/list.bit?pageNo=1&pageSize=10"><span>1. 사용자 목록</span></a><br><br>
+		<a href="/sems/users/detailForm/form.html"><span>2. 사용자 조회</span></a><br><br>
+		<a href="/sems/users/insertForm/form.html"><span>3. 사용자 등록</span></a><br><br>
+		<a href="/sems/users/updateForm/form.html"><span>4. 사용자 변경</span></a><br><br>
+		<a href="/sems/users/deleteForm/form.html"><span>5. 사용자 삭제</span></a><br><br>
+  </div>
 </div>
 </div>
 </body>
