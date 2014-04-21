@@ -24,7 +24,7 @@ public class UsersUpdateServlet extends HttpServlet {
 		
 		try {
 			//1) DB에서 과목 상세 정보를 가져온다.
-			int no = Integer.parseInt(request.getParameter("no"));
+			int no = Integer.parseInt(request.getParameter("uno"));
 			UsersDao dao = (UsersDao)this.getServletContext()
 					.getAttribute("usersDao");
 			UsersVo vo = dao.detail(no);
@@ -57,12 +57,12 @@ public class UsersUpdateServlet extends HttpServlet {
 			vo.setFax(request.getParameter("fax"));
 			vo.setPostNo(request.getParameter("postNo"));
 			vo.setAddr(request.getParameter("addr"));
-			vo.setPhoto(request.getParameter("photoPath"));
+			vo.setPhoto(request.getParameter("photo"));
 			
 			dao.update(vo);
 			
 			
-			response.sendRedirect("detail.bit?no=" + vo.getUno());
+			response.sendRedirect("detail.bit?uno=" + vo.getUno());
 			
 		} catch (Throwable e) {
 			e.printStackTrace();
