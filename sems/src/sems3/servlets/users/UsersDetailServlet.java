@@ -31,7 +31,7 @@ public class UsersDetailServlet extends HttpServlet {
 			UsersDao dao = (UsersDao)this.getServletContext()
 					.getAttribute("usersDao");
 			
-			int no = Integer.parseInt(request.getParameter("no")); 
+			int no = Integer.parseInt(request.getParameter("uno")); 
 			
 			UsersVo users = dao.detail(no);
 			
