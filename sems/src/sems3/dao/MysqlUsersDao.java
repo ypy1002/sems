@@ -110,8 +110,8 @@ public class MysqlUsersDao implements UsersDao {
 	}
 	
 	public void update(UsersVo users) throws Throwable {
-		PreparedStatement stmt = null;
 		Connection con = null;
+		PreparedStatement stmt = null;
 		try {
 			con = dbConnectionPool.getConnection();
 			
@@ -136,8 +136,8 @@ public class MysqlUsersDao implements UsersDao {
 	}
 	
 	public void delete(int no) throws Throwable {
-		PreparedStatement stmt = null;
 		Connection con = null;
+		PreparedStatement stmt = null;
 		try {
 			con = dbConnectionPool.getConnection();
 			
