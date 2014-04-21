@@ -42,9 +42,9 @@ public class UsersDeleteServlet extends HttpServlet {
 			UsersDao dao = (UsersDao)this.getServletContext()
 					.getAttribute("usersDao");
 			
-			int no = Integer.parseInt(request.getParameter("no"));
+			int uno = Integer.parseInt(request.getParameter("uno"));
 			
-			dao.delete(no);
+			dao.delete(uno);
 			
 			// 3) Redirect 처리
 			// - 콘텐츠를 출력하지 않기 때문에 => 이전에 출력한 내용은 취소된다.
