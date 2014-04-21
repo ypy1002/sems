@@ -78,9 +78,9 @@ h1 {
 				<td>${users.password}</td>
 				<td>${users.name}</td>
 				<td id='ds'>${users.tel}</td>
-				<td class='dd'><a href='detail.bit?no=${users.uno}'>View</a></td>
-				<td class='dd'><a href='update.bit?no=${users.uno}'>Update</a></td>
-				<td class='dd'><a href='delete.bit?no=${users.uno}'>Delete</a></td>
+				<td class='dd'><a href='detail.bit?uno=${users.uno}'>View</a></td>
+				<td class='dd'><a href='update.bit?uno=${users.uno}'>Update</a></td>
+				<td class='dd'><a href='delete.bit?uno=${users.uno}'>Delete</a></td>
 			</tr>
 		</c:forEach>
 		</table>
