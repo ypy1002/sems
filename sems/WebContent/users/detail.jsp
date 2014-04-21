@@ -96,10 +96,6 @@ h1 {
 			<th>사진</th>
 			<td><%=users.getPhoto()%></td>
 		</tr>
-		<tr>
-			<th>내용</th>
-			<td><textarea rows='5' cols='60'><%=users.getDescription()%></textarea></td>
-		</tr>
 	</table>
 	<a href='list.bit?pageNo=1&pageSize=10'>목록</a>
 	<a href='delete.bit?no=<%=users.getUno()%>'>삭제</a>
