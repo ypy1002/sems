@@ -33,17 +33,11 @@ public class UsersDeleteServlet extends HttpServlet {
 		// 1) 응답 헤더에 Refresh 명령어 심기 
 		//response.setHeader("Refresh", "1;url=list.bit?pageNo=1&pageSize=10");
 		
-		response.setContentType("text/html;charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<html><head><title>사용자 데이터 삭제</title>");
-		
 		// 2) 응답 내용에 Refresh 명령어 심기
 		//out.println("<meta http-equiv='Refresh'"
 		//		+ " content='1;url=list.bit?pageNo=1&pageSize=10'>");
-		out.println("</head><body>");
 		
 		try {
-			out.println("<h1>사용자 데이터 삭제 결과</h1>");
 			
 			UsersDao dao = (UsersDao)this.getServletContext()
 					.getAttribute("usersDao");
@@ -57,10 +51,8 @@ public class UsersDeleteServlet extends HttpServlet {
 			response.sendRedirect("list.bit?pageNo=1&pageSize=10");
 			
 		} catch (Throwable e) {
-			out.println("오류 발생 했음!");
 			e.printStackTrace();
 		}
-		out.println("</body></html>");
 	}
 }
 
